@@ -1,0 +1,13 @@
+{
+	"name": "sparx",
+	"type": "module",
+	"dependencies": {
+		"dotenv": "^16.4.5",
+		"p-throttle": "^6.1.0",
+		"postgres": "^3.4.4",
+		"prompts": "^2.4.2"
+	},
+	"devDependencies": {
+		"prettier": "^3.3.3"
+	}
+}
