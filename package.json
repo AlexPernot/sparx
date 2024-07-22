@@ -5,7 +5,8 @@
 		"dotenv": "^16.4.5",
 		"p-throttle": "^6.1.0",
 		"postgres": "^3.4.4",
-		"prompts": "^2.4.2"
+		"prompts": "^2.4.2",
+		"puppeteer": "^22.13.1"
 	},
 	"devDependencies": {
 		"prettier": "^3.3.3"

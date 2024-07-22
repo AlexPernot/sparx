@@ -23,8 +23,10 @@ export async function connect() {
     address varchar,
     gmaps_uri varchar,
     website_uri varchar,
+    facebook_uri varchar,
     rating numeric(2,1),
     user_rating_count int,
+    email varchar,
     PRIMARY KEY (id)
   )`;
 }
@@ -59,6 +61,46 @@ export async function store(place) {
     console.error(
       "Next error happened while trying to store these values:",
       values,
+    );
+    console.error(e);
+  }
+}
+
+export async function getPlacesWithoutEmail(limit = 100) {
+  if (!sql) {
+    throw new Error("Can't store: DB connection is not initialized.");
+  }
+
+  return await sql`SELECT * FROM ${sql(TABLE_NAME)} WHERE email IS NULL ORDER BY name LIMIT ${limit}`;
+}
+
+export async function saveFacebookUrl(id, url) {
+  if (!sql) {
+    throw new Error("Can't store: DB connection is not initialized.");
+  }
+
+  try {
+    await sql`UPDATE ${sql(TABLE_NAME)} SET facebook_uri = ${url} WHERE id = ${id}`;
+  } catch (e) {
+    console.error(
+      "Next error happened while trying to update the facebook url with:",
+      url,
+    );
+    console.error(e);
+  }
+}
+
+export async function saveEmailAddress(id, email) {
+  if (!sql) {
+    throw new Error("Can't store: DB connection is not initialized.");
+  }
+
+  try {
+    await sql`UPDATE ${sql(TABLE_NAME)} SET email = ${email} WHERE id = ${id}`;
+  } catch (e) {
+    console.error(
+      "Next error happened while trying to update the email address with:",
+      email,
     );
     console.error(e);
   }
